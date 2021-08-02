@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://unpkg.com/cirrus-ui" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.40c0ce64.css') }}">
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script  src =" https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js "> </script>
+    <title>Document</title>
+</head>
+<body>
+  <div class="grid grid-gap-3 u-text-center">
+    <div class="grid-c-12" style="background: linear-gradient(to right, #1F2937, #2DD4BF); color: #fff; border-radius: .25rem;">
+        <p><b>Vanguard job 📝</b></p>
+    </div>
+  </div>   
+  <div class=" u-center h-100 u-flex">
+    <div class="intro-card hover-grow frame px-3 py-4">
+      <div class="frame__body text-yellow-100 animated bounceIn">
+        <div class="u-flex u-center">
+        </div>
+        <h3>
+          <span></span>
+          病房/病床查詢<span class="info text-primary uppercase">
+          MsSQL DEMO
+          </span>
+        </h3>
+        <div id="app" class="input-control">
+          <button class='btn-animated' v-if="!log" v-on:click='log=true' class="btn-success">開始</button>
+          <input v-if="log" v-model="message" placeholder="請輸入8位數病例代碼">
+          <p v-if='message.length!=0'>病例代碼 : {{'{{ message }}'}}</p>
+
+          <button class='btn-success btn-animated btn-small animated bounce'v-if='message.length===8' @click='log1'>GO</button>
+
+          <P class='text-primary'v-else-if='message.length>0 && message.length!=8'>格式錯誤</P>
+          <section v-if="errored">
+            <p>服務器無法正確返回資料，可能是您輸入非數字的資料，或您的網路響應出現問題!請重新整理頁面後再嘗試。</p>
+          </section>
+          <section v-else>
+            <!-- <div v-if="loading">Loading...</div> -->
+            <!-- <div v-else > -->
+               
+                <table v-if="goLog" class="table animated fadeIn">
+                  <thead>
+                      <tr>
+                          <th><abbr title="Title1"></abbr></th>
+                          <th><abbr title="Title2">病房編號</abbr></th>
+                          <th><abbr title="Title3">病床編號</abbr></th>
+                          
+                      </tr>
+                  </thead>
+                  
+                  <tbody>
+                      <tr V-for=' sqls in info'>
+                          <th>{{"{{sqls.id}}"}}</th>
+                          <td>{{"{{ sqls.Ward_code}}"}}</td>
+                          <td>{{"{{ sqls.Bed_code}}"}}</td>
+                      </tr>
+                    
+                  </tbody>
+              </table>
+          
+            <!-- </div> -->
+          </section>  
+        </div>
+      
+        
+
+        </div>
+        <div class="space"></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="{{url_for('static', filename='a.js')}}"></script>
+    
+</body>
+
+    
+</footer>
+</html>
